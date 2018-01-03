@@ -131,7 +131,7 @@ plugin.checkField = function(params, callback) {
 };
 
 plugin.creatingUser = function(params, callback) {
-    customData = params.data.customRows;
+    //customData = params.data.customRows;
 
     callback(null, params);
 };
