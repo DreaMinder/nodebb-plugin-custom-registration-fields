@@ -54,7 +54,7 @@ plugin.customHeaders = function(headers, callback) {
 
 plugin.customFields = function(params, callback) {    
     var users = params.users.map(function(user) {
-
+console.log(user)
         if (!user.customRows) {
             user.customRows = [];
 
@@ -113,17 +113,17 @@ plugin.checkField = function(params, callback) {
 
         var value = userData[key];
 
-        if (key == 'npi') {
-            if (value.length != 10) {
-                error = {message: 'NPI # must be 10 digits'};
-            }
-            else if (!/^[0-9]+$/.test(value)) {
-                error = {message: 'NPI # must be a numerical value'};
-            }
-        }
+//         if (key == 'npi') {
+//             if (value.length != 10) {
+//                 error = {message: 'NPI # must be 10 digits'};
+//             }
+//             else if (!/^[0-9]+$/.test(value)) {
+//                 error = {message: 'NPI # must be a numerical value'};
+//             }
+//         }
 
         else if (value == "" || value == undefined) {
-            error = {message: 'Please complete all fields before registering.'};
+            error = {message: 'Пожалуйста, заполните все поля.'};
         }
     }
 
