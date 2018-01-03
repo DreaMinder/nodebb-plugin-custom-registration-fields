@@ -122,7 +122,7 @@ plugin.checkField = function(params, callback) {
 //             }
 //         }
 
-        else if (value == "" || value == undefined) {
+        if (value == "" || value == undefined) {
             error = {message: 'Пожалуйста, заполните все поля.'};
         }
     }
