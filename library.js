@@ -1,11 +1,8 @@
 "use strict";
 
 var customFields = {
-        npi : "", 
-        institution : "",
-        practicetype : "",
         specialty : "",
-        practiceyears : ""
+        phone : ""
     },
     customData = [],
     user = module.parent.require('./user'),
@@ -37,24 +34,13 @@ plugin.customHeaders = function(headers, callback) {
     for(var key in customFields) {
 
         switch(key) {
-            case 'npi':
-                var label = "NPI #";
-                break;
-            
-            case 'institution':
-                var label = "Institution";
-                break;
-            
-            case 'practicetype':
-                var label = "Practice Type";
-                break;
-            
+              
             case 'specialty':
-                var label = "Specialty";
+                var label = "Вид деятельности";
                 break;
             
-            case 'practiceyears':
-                var label = "Practice Years";
+            case 'phone':
+                var label = "Номер телефона";
                 break;
         }
         
@@ -92,29 +78,15 @@ plugin.addField = function(params, callback) {
         }
 
         switch(key) {
-            case 'npi':
-                var html = '<input class="form-control" type="text" name="npi" id="npi" placeholder="Enter NPI #"><span class="custom-feedback" id="npi-notify"></span><span class="help-block">A unique 10-digit identification number.</span>';
-                var label = "NPI #";
-                break;
-            
-            case 'institution':
-                var html = '<input class="form-control" type="text" name="institution" id="institution" placeholder="Enter Institution"><span class="custom-feedback" id="institution-notify"></span>';
-                var label = "Institution";
-                break;
-            
-            case 'practicetype':
-                var html = '<select class="form-control" name="practicetype" id="practicetype"><option value="" disabled="" selected="">Select your practice type</option><option value="1">Academic</option><option value="2">Community</option><option value="3">Hospital</option></select><span class="custom-feedback" id="practice-notify"></span>';
-                var label = "Practice Type";
-                break;
-            
+
             case 'specialty':
-                var html = '<select class="form-control" name="specialty" id="specialty"><option value="" disabled="" selected="">Select your specialty</option><option value="1">Oncology</option><option value="2">Hematology</option><option value="3">Oncology/Hematology</option><option value="4">Radiation Oncology</option><option value="5">Nuclear Medicine</option><option value="5">Surgery</option></select><span class="custom-feedback" id="specialty-notify"></span>';
-                var label = "Specialty";
+                var html = '<input class="form-control" type="text" name="specialty" id="specialty" placeholder="Введите область своей деятельности"><span class="custom-feedback" id="npi-notify"></span>';
+                var label = "Вид деятельности";
                 break;
             
-            case 'practiceyears':
-                var html = '<select class="form-control" name="practiceyears" id="practiceyears"><option value="" disabled="" selected="">Select your years in practice</option><option value="1">In Training</option><option value="2">1 to 3 Years</option><option value="3">4 to 7 Years</option><option value="4">8 to 10 Years</option><option value="5">&gt;10 Years</option></select><span class="custom-feedback" id="years-notify"></span>';
-                var label = "Practice Years";
+            case 'phone':
+                var html = '<input class="form-control" type="text" name="phone" id="phone" placeholder="Введите номер телефона"><span class="custom-feedback" id="npi-notify"></span>';
+                var label = "Номер телефона";
                 break;
         }
 
@@ -166,11 +138,8 @@ plugin.creatingUser = function(params, callback) {
 
 plugin.createdUser = function(params) {
     var addCustomData = {
-        npi : customData[0].value, 
-        institution : customData[1].value,
-        practicetype : customData[2].value,
-        specialty : customData[3].value,
-        practiceyears : customData[4].value
+        specialty : customData[0].value,
+        phone : customData[1].value
     }
 
     var keyID = 'user:' + params.uid + ':ns:custom_fields';
@@ -191,24 +160,13 @@ plugin.addToApprovalQueue = function(params, callback) {
     for (var key in customFields) {
 
         switch(key) {
-            case 'npi':
-                var fieldData = params.userData['npi'];
-                break;
-            
-            case 'institution':
-                var fieldData = params.userData['institution'];
-                break;
-            
-            case 'practicetype':
-                var fieldData = params.userData['practicetype'];
-                break;
-            
+
             case 'specialty':
                 var fieldData = params.userData['specialty'];
                 break;
             
-            case 'practiceyears':
-                var fieldData = params.userData['practiceyears'];
+            case 'phone':
+                var fieldData = params.userData['phone'];
                 break;
         }
         
