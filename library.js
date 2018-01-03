@@ -54,8 +54,8 @@ plugin.customHeaders = function(headers, callback) {
 
 plugin.customFields = function(params, callback) {    
     var users = params.users.map(function(user) {
-console.log(user)
-        if (!user.customRows) {
+
+	if (user && !user.customRows) {
             user.customRows = [];
 
             for(var key in customFields) {
